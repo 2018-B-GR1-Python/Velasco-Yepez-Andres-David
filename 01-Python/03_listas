@@ -1,0 +1,21 @@
+arreglo = []
+arregloNumeros = [1, 2, 3, 4, 5, 6, 7, 8]
+
+print(arregloNumeros[0:4])
+print(arregloNumeros[3:-3])
+
+print(7 in arregloNumeros)
+print(6 in arregloNumeros)  # Comprobar si existe el elemnto 6
+print(len(arregloNumeros))
+arregloNumeros.pop(-3)
+print(arregloNumeros)
+arregloNumeros.insert(1, 1.2)  # insertar en la posicion 1 el elemento 1.2
+print(arregloNumeros)
+
+del arregloNumeros[1:4]  # Borrar desde la posicion 1 a la 4
+print(arregloNumeros)
+
+# Bucle para iterar un arreglo
+for numero in arregloNumeros:
+    print(numero)
+
