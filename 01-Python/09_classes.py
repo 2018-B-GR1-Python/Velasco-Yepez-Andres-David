@@ -22,8 +22,10 @@ class Auto:
 
 
 class Hyundai(Auto):
-    def __init__(self):
+    def __init__(self,color,nombre):
+        super().__init__(color=color,nombre=nombre)
         print('construcor')
+        print(self.__ensamblado)
 
 
 class Escuela:
@@ -65,6 +67,3 @@ print(bm)
 
 bm.cambiar_ensamblado('Guayaquil')
 print(bm)
-
-
-mi
