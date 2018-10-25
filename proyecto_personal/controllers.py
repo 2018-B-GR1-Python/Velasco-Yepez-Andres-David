@@ -1,16 +1,20 @@
 from proyecto_personal.conexionBD import Data_Base
 from proyecto_personal.models import *
-
+from functools import *
 
 #  ------------------------------------------------------------
 #  Controladores
 #  ------------------------------------------------------------
+
+
+
 
 def buscar_pelicula(nombre_pelicula):
     for pelicula in Data_Base.peliculas:
         if pelicula.nombre == nombre_pelicula:
             return pelicula
     return None
+
 
 
 def agregar(carrito, pelicula):
@@ -54,3 +58,11 @@ def generar_reporte(factura, lista_detalles):
     reporte.join(f'{detalle.pelicula.nombre}                {detalle.pelicula.precio}\n' for detalle in lista_detalles)
     reporte.join(f' Total: {calcular_total(lista_detalles)}')
     return reporte
+
+# Obtiene el precio del carrito de compras
+def obtener_valor_carrito(carrito):
+    return reduce((lambda x,y:x+y),list(map((lambda x:x.pelicula.precio),carrito.lista_peliculas)))
+
+
+def mostrar_peliculas_disponibles():
+    pass
