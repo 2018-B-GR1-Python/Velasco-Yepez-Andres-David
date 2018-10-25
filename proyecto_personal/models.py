@@ -23,14 +23,20 @@ class Detalle(object):
 class Pelicula(object):
     def __init__(self, nombre, precio, genero):
         self.nombre = nombre
-        self.precio = nombre
+        self.precio = precio
         self.genero = genero
 
+
+    def __str__(self):
+        return f"Nombre: {self.nombre} Precio: {self.precio} Genero: {self.genero}\n"
 
 #  Generos de las peliculas
 class Genero(object):
     def __init__(self, nombre):
         self.nombre = nombre
+
+    def __str__(self):
+        return self.nombre
 
 
 # Clase usuario
@@ -40,7 +46,10 @@ class Usuario(object):
         self.correo = correo
         self.cedula = cedula
 
+    def __str__(self):
+        return self.nombre
+
 
 class CarritoDeCompra(object):
     def __init__(self):
-        self.lista_peliculas=None
+        self.lista_peliculas=[]

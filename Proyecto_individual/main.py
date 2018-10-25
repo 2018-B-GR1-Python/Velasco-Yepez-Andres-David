@@ -23,6 +23,7 @@ class CarritoDeCompra(object):
 
 class Cliente(object):
     def __init__(self, nombre, apellido, cedula):
+        self.nombre = nombre
         self.apellido = apellido
         self.cedula = cedula
 

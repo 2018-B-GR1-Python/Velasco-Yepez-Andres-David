@@ -7,8 +7,6 @@ from functools import *
 #  ------------------------------------------------------------
 
 
-
-
 def buscar_pelicula(nombre_pelicula):
     for pelicula in Data_Base.peliculas:
         if pelicula.nombre == nombre_pelicula:
@@ -16,9 +14,8 @@ def buscar_pelicula(nombre_pelicula):
     return None
 
 
-
 def agregar(carrito, pelicula):
-    carrito.append(pelicula)
+    carrito.lista_peliculas.append(pelicula)
 
 
 #  Este metodo recibe el carrito de compra y los datos del usuario para realizar la transaccion
@@ -30,10 +27,11 @@ def comprar(carrito, **kwargs):
         usuario=Usuario(kwargs['nombre'], kwargs['correo'], kwargs['cedula'])
     )
     Data_Base.facturas.append(factura)
-    for pelicula in carrito:
-        Data_Base.detalles.append(factura=factura, pelicula=pelicula)
+    for pelicula in carrito.lista_peliculas:
+        Data_Base.detalles.append(Detalle(factura=factura, pelicula=pelicula))
     lista_detalles = buscar_detalles_factura(factura)
-    generar_reporte(factura,lista_detalles)
+    carrito.lista_peliculas=[]
+    return generar_reporte(factura,lista_detalles)
 
 
 #  busca los detalles referentes a una factura y devuelve una tupla con los mismos
@@ -53,16 +51,16 @@ def calcular_total(lista_detalles):
 
 
 def generar_reporte(factura, lista_detalles):
-    reporte = f"Tienda de peliculas\n" f"Fecha: {factura.fecha}\n" f"Propietario: {factura.fecha}\n" f"Fecha {factura.fecha}\n"
-    reporte.join('Pelicula                  Precio')
-    reporte.join(f'{detalle.pelicula.nombre}                {detalle.pelicula.precio}\n' for detalle in lista_detalles)
-    reporte.join(f' Total: {calcular_total(lista_detalles)}')
+    reporte = f"Tienda de peliculas\n" f"Fecha: {factura.fecha}\n" f"Propietario: {factura.usuario}\n"
+    reporte=reporte+'Pelicula                  Precio\n'
+    reporte=reporte+''.join(f'{detalle.pelicula.nombre}                {detalle.pelicula.precio}\n' for detalle in lista_detalles)
+    reporte=reporte+f' Total: {calcular_total(lista_detalles)}'
     return reporte
 
 # Obtiene el precio del carrito de compras
 def obtener_valor_carrito(carrito):
-    return reduce((lambda x,y:x+y),list(map((lambda x:x.pelicula.precio),carrito.lista_peliculas)))
+    return reduce((lambda x,y:x+y),list(map((lambda x:x.precio),carrito.lista_peliculas)))
 
 
 def mostrar_peliculas_disponibles():
-    pass
+    return ''.join( str(pelicula) for pelicula in Data_Base.peliculas)
