@@ -1,1 +1,3 @@
-.idea
+*.idea
+*.pyc
+Proyecto_individual/main.py
