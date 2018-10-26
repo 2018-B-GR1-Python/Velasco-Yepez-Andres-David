@@ -1,0 +1,6 @@
+--------Tienda de peliculas--------
+Fecha: 2018-10-25 23:36
+Propietario: juan
+venom    20.5
+enigma    12.58
+Total: 33.08

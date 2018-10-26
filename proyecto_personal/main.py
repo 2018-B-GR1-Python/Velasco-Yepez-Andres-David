@@ -10,9 +10,11 @@ Data_Base.peliculas.append(Pelicula(nombre='enigma',precio=12.58,genero=Genero('
 Data_Base.peliculas.append(Pelicula(nombre='Star Wars 9',precio=25.58,genero=Genero('drama')))
 
 carrito = CarritoDeCompra()
+#  =============================================
+#                     VISTAS
+#  =============================================
 
-
-
+# Muestra el menu principal de al app
 def mostrar_menu_principal():
     while True:
         if carrito.lista_peliculas:
@@ -24,6 +26,7 @@ def mostrar_menu_principal():
         opcion = input("Ingrese Opcion: ")
         switch_opcion(opcion)
 
+# Formulario de compra
 def menu_compra():
     while True:
         respuesta = input("Finalizar compra y/n: ")
@@ -42,7 +45,7 @@ def menu_compra():
         else:
             print("Opcion invalida")
 
-
+# Menu para buscar pelicula en la BD
 def menu_busqueda():
     pelicula = buscar_pelicula(input("Ingrese nombre pelicula: "))
     if not pelicula:
@@ -63,8 +66,7 @@ def menu_busqueda():
                 print("Opcion invalida")
 
 
-
-
+# Metodo switch case que gestiona el menu principal
 def switch_opcion(opcion):
     res= {
         '1': mostrar_peliculas,
@@ -73,6 +75,7 @@ def switch_opcion(opcion):
     }
     res.get(opcion,lambda: print("Opcion invalida"))()
 
+# Imprime las peliculas disponibles
 def mostrar_peliculas():
     print(mostrar_peliculas_disponibles())
 
