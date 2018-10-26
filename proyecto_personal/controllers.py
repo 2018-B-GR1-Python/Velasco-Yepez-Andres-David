@@ -13,7 +13,7 @@ def buscar_pelicula(nombre_pelicula):
             return pelicula
     return None
 
-
+# Agrega una pelicula al carrito de compra
 def agregar(carrito, pelicula):
     carrito.lista_peliculas.append(pelicula)
 
@@ -42,14 +42,11 @@ def buscar_detalles_factura(factura):
             lista_detalles.append(detalle)
     return lista_detalles
 
-
+# Calcula el precio total de las peliculas
 def calcular_total(lista_detalles):
-    total = 0
-    for detalle in lista_detalles:
-        total = total + detalle.pelicula.precio
-        return total
+    return reduce((lambda x,y:x.pelicula.precio+y.pelicula.precio),lista_detalles)
 
-
+# Genera la descripcion de la factura y la guarda en un archivo
 def generar_reporte(factura, lista_detalles):
     reporte = f"--------Tienda de peliculas--------\n" \
               f"Fecha: {factura.fecha}\n" f"Propietario: {factura.usuario}\n"
@@ -62,11 +59,11 @@ def generar_reporte(factura, lista_detalles):
 def obtener_valor_carrito(carrito):
     return reduce((lambda x,y:x+y),list(map((lambda x:x.precio),carrito.lista_peliculas)))
 
-
+# Retorna las peliculas disponibles en la BD
 def mostrar_peliculas_disponibles():
     return ''.join( str(pelicula) for pelicula in Data_Base.peliculas)
 
-
+# Exporta una factura y sus detalles a un archivo
 def exportar_factura_archivo(path, datos):
     try:
         archivo_abierto = open(path,'w+')  # Defecto es 'r'
