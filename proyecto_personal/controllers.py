@@ -46,15 +46,16 @@ def buscar_detalles_factura(factura):
 def calcular_total(lista_detalles):
     total = 0
     for detalle in lista_detalles:
-        totat = total + detalle.pelicula.precio
+        total = total + detalle.pelicula.precio
         return total
 
 
 def generar_reporte(factura, lista_detalles):
-    reporte = f"Tienda de peliculas\n" f"Fecha: {factura.fecha}\n" f"Propietario: {factura.usuario}\n"
-    reporte=reporte+'Pelicula                  Precio\n'
-    reporte=reporte+''.join(f'{detalle.pelicula.nombre}                {detalle.pelicula.precio}\n' for detalle in lista_detalles)
-    reporte=reporte+f' Total: {calcular_total(lista_detalles)}'
+    reporte = f"--------Tienda de peliculas--------\n" \
+              f"Fecha: {factura.fecha}\n" f"Propietario: {factura.usuario}\n"
+    reporte=reporte+''.join(f'{detalle.pelicula.nombre}    {detalle.pelicula.precio}\n' for detalle in lista_detalles)
+    reporte=reporte+f'Total: {calcular_total(lista_detalles)}'
+    exportar_factura_archivo(f"./facturas_generadas/factura{factura.usuario.cedula}.txt",reporte)
     return reporte
 
 # Obtiene el precio del carrito de compras
@@ -64,3 +65,12 @@ def obtener_valor_carrito(carrito):
 
 def mostrar_peliculas_disponibles():
     return ''.join( str(pelicula) for pelicula in Data_Base.peliculas)
+
+
+def exportar_factura_archivo(path, datos):
+    try:
+        archivo_abierto = open(path,'w+')  # Defecto es 'r'
+        archivo_abierto.write(datos)
+        archivo_abierto.close()
+    except Exception:
+        print("No se pudo leer el archivo")

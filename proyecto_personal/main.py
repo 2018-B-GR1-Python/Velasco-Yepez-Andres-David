@@ -33,6 +33,9 @@ def menu_compra():
             cedula = input("Ingrese su cedula: ")
             recibo=comprar(carrito=carrito, nombre=nombre, correo=correo, cedula=cedula)
             print(recibo)
+            print("-----------------------------------------------------")
+            print("            FACTURA EXPORTADA A UN ARCHIVO           ")
+            print("-----------------------------------------------------")
             break
         elif respuesta == 'n' or respuesta == 'n':
             break
