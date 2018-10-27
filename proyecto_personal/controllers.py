@@ -6,6 +6,8 @@ from functools import *
 #  Controladores
 #  ------------------------------------------------------------
 
+def buscar_peliculav2(nombre_pelicula):
+    return list(filter(lambda x:x==nombre_pelicula,list(map(lambda x:x.nombre,Data_Base.peliculas))))
 
 def buscar_pelicula(nombre_pelicula):
     for pelicula in Data_Base.peliculas:

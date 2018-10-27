@@ -1,0 +1,6 @@
+--------Tienda de peliculas--------
+Fecha: 2018-10-27 09:38
+Propietario: andres
+venom    20.5
+enigma    12.58
+Total: 33.08
