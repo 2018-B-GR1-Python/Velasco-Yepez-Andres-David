@@ -37,7 +37,7 @@ def menu_compra():
             recibo=comprar(carrito=carrito, nombre=nombre, correo=correo, cedula=cedula)
             print(recibo)
             print("-----------------------------------------------------")
-            print("            FACTURA EXPORTADA A UN ARCHIVO           ")
+            print("      SE EXPORTARA LA FACTURA A UN ARCHIVO           ")
             print("-----------------------------------------------------")
             break
         elif respuesta == 'n' or respuesta == 'n':
@@ -78,5 +78,6 @@ def switch_opcion(opcion):
 # Imprime las peliculas disponibles
 def mostrar_peliculas():
     print(mostrar_peliculas_disponibles())
+
 
 mostrar_menu_principal()
