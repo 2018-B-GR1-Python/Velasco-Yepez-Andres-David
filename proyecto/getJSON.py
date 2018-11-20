@@ -6,8 +6,8 @@ Created on Tue Nov 20 00:03:20 2018
 """
 import pandas as pd
 
-url="https://api.opendota.com/api/heroStats"
-datos=pd.read_json(url,typ='frame')
+url = "https://api.opendota.com/api/heroStats"
+datos = pd.read_json(url,typ='frame')
 print(type(datos))
 columnas = ["id","localized_name", "primary_attr", "attack_type",
              "roles", "base_health", "base_health_regen", "base_mana", "base_mana_regen",
