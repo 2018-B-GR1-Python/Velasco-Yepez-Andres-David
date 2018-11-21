@@ -5,6 +5,7 @@ Created on Tue Nov 20 00:03:20 2018
 @author: Andres
 """
 import pandas as pd
+import matplotlib.pyplot as plt
 
 url = "https://api.opendota.com/api/heroStats"
 datos = pd.read_json(url,typ='frame')
@@ -17,3 +18,6 @@ columnas = ["id","localized_name", "primary_attr", "attack_type",
 datos=datos[columnas].set_index('id')
 
 datos.to_csv('./data/heroes.csv', encoding='utf-8')
+datos_mana = datos.sort_values(by=['attack_range','base_attack_max'],ascending=False)
+plt.bar(datos_mana['localized_name'][:10], datos_mana['base_attack_max'][:10])
+plt.show()
